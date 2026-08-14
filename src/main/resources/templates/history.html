@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SmartRouteAI - Smart Route Finder</title>
+
+    <style>
+
+        /* ==========================================
+           RESET
+        ========================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* ==========================================
+           BODY
+        ========================================== */
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #0f172a,
+                            #1e293b
+                    );
+
+            color: white;
+
+            min-height: 100vh;
+
+            padding: 30px;
+        }
+
+
+        /* ==========================================
+           MAIN CONTAINER
+        ========================================== */
+
+        .container {
+
+            max-width: 900px;
+
+            margin: auto;
+        }
+
+
+        /* ==========================================
+           HEADER
+        ========================================== */
+
+        .header {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .header h1 {
+
+            font-size: 40px;
+
+            color: #38bdf8;
+
+            margin-bottom: 10px;
+        }
+
+
+        .header p {
+
+            color: #cbd5e1;
+
+            font-size: 17px;
+        }
+
+
+        /* ==========================================
+           MAIN CARD
+        ========================================== */
+
+        .card {
+
+            background:
+                    rgba(30, 41, 59, 0.95);
+
+            border: 1px solid #334155;
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            box-shadow:
+                    0 10px 30px
+                    rgba(0, 0, 0, 0.30);
+        }
+
+
+        .card h2 {
+
+            color: #38bdf8;
+
+            margin-bottom: 25px;
+
+            text-align: center;
+        }
+
+
+        /* ==========================================
+           FORM
+        ========================================== */
+
+        .form-group {
+
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            color: #cbd5e1;
+
+            margin-bottom: 8px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            width: 100%;
+
+            padding: 13px 15px;
+
+            border-radius: 10px;
+
+            border: 1px solid #475569;
+
+            background: #0f172a;
+
+            color: white;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color: #38bdf8;
+
+            box-shadow:
+                    0 0 0 2px
+                    rgba(56, 189, 248, 0.15);
+        }
+
+
+        .form-group select option {
+
+            background: #0f172a;
+
+            color: white;
+        }
+
+
+        /* ==========================================
+           BUTTON CONTAINER
+        ========================================== */
+
+        .buttons {
+
+            display: flex;
+
+            gap: 15px;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            margin-top: 25px;
+        }
+
+
+        /* ==========================================
+           FIND ROUTE BUTTON
+        ========================================== */
+
+        .find-button {
+
+            border: none;
+
+            padding: 13px 28px;
+
+            background: #0284c7;
+
+            color: white;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .find-button:hover {
+
+            background: #0369a1;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* ==========================================
+           SEARCH HISTORY BUTTON
+        ========================================== */
+
+        .history-button {
+
+            display: inline-block;
+
+            padding: 13px 28px;
+
+            background: #7c3aed;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+
+        .history-button:hover {
+
+            background: #6d28d9;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* ==========================================
+           INFORMATION SECTION
+        ========================================== */
+
+        .features {
+
+            display: grid;
+
+            grid-template-columns:
+                    repeat(
+                            auto-fit,
+                            minmax(180px, 1fr)
+                    );
+
+            gap: 15px;
+
+            margin-top: 30px;
+        }
+
+
+        .feature {
+
+            background: #0f172a;
+
+            border: 1px solid #334155;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            text-align: center;
+        }
+
+
+        .feature-icon {
+
+            font-size: 28px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .feature h3 {
+
+            color: #38bdf8;
+
+            font-size: 17px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .feature p {
+
+            color: #94a3b8;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 30px;
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 15px;
+            }
+
+
+            .header h1 {
+
+                font-size: 30px;
+            }
+
+
+            .card {
+
+                padding: 20px;
+            }
+
+
+            .find-button,
+            .history-button {
+
+                width: 100%;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ==========================================
+         HEADER
+    ========================================== -->
+
+    <div class="header">
+
+        <h1>
+            🚗 SmartRouteAI
+        </h1>
+
+        <p>
+            AI-Based Smart Route Finder
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         ROUTE SEARCH CARD
+    ========================================== -->
+
+    <div class="card">
+
+        <h2>
+            🛣️ Find Your Smart Route
+        </h2>
+
+
+        <!-- ======================================
+             ROUTE FORM
+        ====================================== -->
+
+        <form
+                action="/find-route"
+                method="post">
+
+
+            <!-- ==================================
+                 SOURCE
+            ================================== -->
+
+            <div class="form-group">
+
+                <label for="source">
+
+                    📍 Source City
+
+                </label>
+
+
+                <select
+                        id="source"
+                        name="source"
+                        required>
+
+                    <option value="">
+                        Select Source City
+                    </option>
+
+                    <option value="Chennai">
+                        Chennai
+                    </option>
+
+                    <option value="Vellore">
+                        Vellore
+                    </option>
+
+                    <option value="Salem">
+                        Salem
+                    </option>
+
+                    <option value="Trichy">
+                        Trichy
+                    </option>
+
+                    <option value="Madurai">
+                        Madurai
+                    </option>
+
+                    <option value="Coimbatore">
+                        Coimbatore
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ==================================
+                 DESTINATION
+            ================================== -->
+
+            <div class="form-group">
+
+                <label for="destination">
+
+                    🏁 Destination City
+
+                </label>
+
+
+                <select
+                        id="destination"
+                        name="destination"
+                        required>
+
+                    <option value="">
+                        Select Destination City
+                    </option>
+
+                    <option value="Chennai">
+                        Chennai
+                    </option>
+
+                    <option value="Vellore">
+                        Vellore
+                    </option>
+
+                    <option value="Salem">
+                        Salem
+                    </option>
+
+                    <option value="Trichy">
+                        Trichy
+                    </option>
+
+                    <option value="Madurai">
+                        Madurai
+                    </option>
+
+                    <option value="Coimbatore">
+                        Coimbatore
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ==================================
+                 VEHICLE
+            ================================== -->
+
+            <div class="form-group">
+
+                <label for="vehicleType">
+
+                    🚗 Vehicle Type
+
+                </label>
+
+
+                <select
+                        id="vehicleType"
+                        name="vehicleType"
+                        required>
+
+                    <option value="Bike">
+                        🏍️ Bike
+                    </option>
+
+                    <option value="Car">
+                        🚗 Petrol Car
+                    </option>
+
+                    <option value="Diesel Car">
+                        🚙 Diesel Car
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ==================================
+                 BUTTONS
+            ================================== -->
+
+            <div class="buttons">
+
+
+                <!-- FIND ROUTE -->
+
+                <button
+                        type="submit"
+                        class="find-button">
+
+                    🔍 Find Smart Route
+
+                </button>
+
+
+                <!-- SEARCH HISTORY -->
+
+                <a
+                        href="/history"
+                        class="history-button">
+
+                    📋 Search History
+
+                </a>
+
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+    <!-- ==========================================
+         FEATURES
+    ========================================== -->
+
+    <div class="features">
+
+
+        <!-- ROUTE -->
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🛣️
+            </div>
+
+            <h3>
+                Smart Routing
+            </h3>
+
+            <p>
+                Finds routes using
+                intelligent search algorithms.
+            </p>
+
+        </div>
+
+
+        <!-- MAP -->
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🗺️
+            </div>
+
+            <h3>
+                Live Map
+            </h3>
+
+            <p>
+                Displays the selected route
+                on an interactive map.
+            </p>
+
+        </div>
+
+
+        <!-- TRAFFIC -->
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🚦
+            </div>
+
+            <h3>
+                Traffic Prediction
+            </h3>
+
+            <p>
+                Estimates traffic conditions
+                and adjusts travel time.
+            </p>
+
+        </div>
+
+
+        <!-- WEATHER -->
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🌦️
+            </div>
+
+            <h3>
+                Weather
+            </h3>
+
+            <p>
+                Provides current weather
+                information for your destination.
+            </p>
+
+        </div>
+
+
+        <!-- FUEL -->
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ⛽
+            </div>
+
+            <h3>
+                Fuel Prediction
+            </h3>
+
+            <p>
+                Estimates fuel consumption
+                and travel cost.
+            </p>
+
+        </div>
+
+
+        <!-- HISTORY -->
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📋
+            </div>
+
+            <h3>
+                Search History
+            </h3>
+
+            <p>
+                Stores your previous route
+                searches using Firebase.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
+
+    <div class="footer">
+
+        SmartRouteAI © 2026
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SmartRouteAI - Journey</title>
+
+    <link rel="stylesheet"
+          th:href="@{/style.css}">
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>🚗 Start Your Journey</h1>
+
+    <p>
+        Enter your journey details.
+    </p>
+
+
+    <!-- ====================================== -->
+    <!-- ROUTE FORM -->
+    <!-- ====================================== -->
+
+    <form action="/find-route"
+          method="post">
+
+
+        <!-- ====================================== -->
+        <!-- SOURCE -->
+        <!-- ====================================== -->
+
+        <label for="source">
+            Source District
+        </label>
+
+        <select id="source"
+                name="source"
+                required>
+
+            <option value="">
+                Select Source
+            </option>
+
+            <option value="Ariyalur">Ariyalur</option>
+            <option value="Chengalpattu">Chengalpattu</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Coimbatore">Coimbatore</option>
+            <option value="Cuddalore">Cuddalore</option>
+            <option value="Dharmapuri">Dharmapuri</option>
+            <option value="Dindigul">Dindigul</option>
+            <option value="Erode">Erode</option>
+            <option value="Kallakurichi">Kallakurichi</option>
+            <option value="Kancheepuram">Kancheepuram</option>
+            <option value="Karur">Karur</option>
+            <option value="Krishnagiri">Krishnagiri</option>
+            <option value="Madurai">Madurai</option>
+            <option value="Mayiladuthurai">Mayiladuthurai</option>
+            <option value="Nagapattinam">Nagapattinam</option>
+            <option value="Kanniyakumari">Kanniyakumari</option>
+            <option value="Namakkal">Namakkal</option>
+            <option value="Perambalur">Perambalur</option>
+            <option value="Pudukottai">Pudukottai</option>
+            <option value="Ramanathapuram">Ramanathapuram</option>
+            <option value="Ranipet">Ranipet</option>
+            <option value="Salem">Salem</option>
+            <option value="Sivaganga">Sivaganga</option>
+            <option value="Tenkasi">Tenkasi</option>
+            <option value="Thanjavur">Thanjavur</option>
+            <option value="Theni">Theni</option>
+            <option value="Thoothukudi">Thoothukudi</option>
+            <option value="Trichy">Trichy</option>
+            <option value="Tirunelveli">Tirunelveli</option>
+            <option value="Tirupathur">Tirupathur</option>
+            <option value="Tiruppur">Tiruppur</option>
+            <option value="Tiruvallur">Tiruvallur</option>
+            <option value="Tiruvannamalai">Tiruvannamalai</option>
+            <option value="The Nilgiris">The Nilgiris</option>
+            <option value="Vellore">Vellore</option>
+            <option value="Viluppuram">Viluppuram</option>
+            <option value="Virudhunagar">Virudhunagar</option>
+            <option value="Thiruvarur">Thiruvarur</option>
+
+        </select>
+
+
+        <br><br>
+
+
+        <!-- ====================================== -->
+        <!-- DESTINATION -->
+        <!-- ====================================== -->
+
+        <label for="destination">
+            Destination District
+        </label>
+
+        <select id="destination"
+                name="destination"
+                required>
+
+            <option value="">
+                Select Destination
+            </option>
+
+            <option value="Ariyalur">Ariyalur</option>
+            <option value="Chengalpattu">Chengalpattu</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Coimbatore">Coimbatore</option>
+            <option value="Cuddalore">Cuddalore</option>
+            <option value="Dharmapuri">Dharmapuri</option>
+            <option value="Dindigul">Dindigul</option>
+            <option value="Erode">Erode</option>
+            <option value="Kallakurichi">Kallakurichi</option>
+            <option value="Kancheepuram">Kancheepuram</option>
+            <option value="Karur">Karur</option>
+            <option value="Krishnagiri">Krishnagiri</option>
+            <option value="Madurai">Madurai</option>
+            <option value="Mayiladuthurai">Mayiladuthurai</option>
+            <option value="Nagapattinam">Nagapattinam</option>
+            <option value="Kanniyakumari">Kanniyakumari</option>
+            <option value="Namakkal">Namakkal</option>
+            <option value="Perambalur">Perambalur</option>
+            <option value="Pudukottai">Pudukottai</option>
+            <option value="Ramanathapuram">Ramanathapuram</option>
+            <option value="Ranipet">Ranipet</option>
+            <option value="Salem">Salem</option>
+            <option value="Sivaganga">Sivaganga</option>
+            <option value="Tenkasi">Tenkasi</option>
+            <option value="Thanjavur">Thanjavur</option>
+            <option value="Theni">Theni</option>
+            <option value="Thoothukudi">Thoothukudi</option>
+            <option value="Trichy">Trichy</option>
+            <option value="Tirunelveli">Tirunelveli</option>
+            <option value="Tirupathur">Tirupathur</option>
+            <option value="Tiruppur">Tiruppur</option>
+            <option value="Tiruvallur">Tiruvallur</option>
+            <option value="Tiruvannamalai">Tiruvannamalai</option>
+            <option value="The Nilgiris">The Nilgiris</option>
+            <option value="Vellore">Vellore</option>
+            <option value="Viluppuram">Viluppuram</option>
+            <option value="Virudhunagar">Virudhunagar</option>
+            <option value="Thiruvarur">Thiruvarur</option>
+
+        </select>
+
+
+        <br><br>
+
+
+        <!-- ====================================== -->
+        <!-- VEHICLE -->
+        <!-- ====================================== -->
+
+        <label for="vehicleType">
+            Vehicle
+        </label>
+
+        <select id="vehicleType"
+                name="vehicleType"
+                required>
+
+            <option value="Bike">
+                Bike
+            </option>
+
+            <option value="Car">
+                Petrol Car
+            </option>
+
+            <option value="Diesel Car">
+                Diesel Car
+            </option>
+
+        </select>
+
+
+        <br><br>
+
+
+        <!-- ====================================== -->
+        <!-- SUBMIT -->
+        <!-- ====================================== -->
+
+        <button type="submit">
+            🔍 Find Smart Route
+        </button>
+
+
+    </form>
+
+
+    <br>
+
+
+    <!-- ====================================== -->
+    <!-- BACK -->
+    <!-- ====================================== -->
+
+    <a th:href="@{/}">
+        ← Back to Home
+    </a>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SmartRouteAI</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          th:href="@{/style.css}">
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <!-- ====================================== -->
+    <!-- HEADER -->
+    <!-- ====================================== -->
+
+    <div class="header">
+
+        <h1>🚗 SmartRouteAI</h1>
+
+        <p class="subtitle">
+            AI-Based Smart Route Optimization System
+        </p>
+
+        <p class="description">
+            Find the shortest and smartest route between
+            cities using AI Search Algorithms.
+        </p>
+
+    </div>
+
+
+    <!-- ====================================== -->
+    <!-- BUTTONS -->
+    <!-- ====================================== -->
+
+    <div class="button-container">
+
+        <a th:href="@{/journey}">
+            <button type="button">
+                Start Journey
+            </button>
+        </a>
+
+
+        <button type="button">
+            View Routes
+        </button>
+
+
+        <button type="button">
+            About
+        </button>
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>
