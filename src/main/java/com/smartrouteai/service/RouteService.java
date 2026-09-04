@@ -109,6 +109,8 @@ public class RouteService {
                             0
                     );
 
+            result.setVehicleType(vehicleType);
+
             addExtraInformation(
                     result,
                     destination,
@@ -120,423 +122,122 @@ public class RouteService {
 
 
         // =====================================================
-        // EXISTING MAIN ROUTES
+        // VERIFY SOURCE / DESTINATION COORDINATES
         // =====================================================
 
-        if (source.equalsIgnoreCase("Chennai")
-                && destination.equalsIgnoreCase("Vellore")) {
+        double[] sourceCoordinates =
+                getCityCoordinates(source);
 
-            return createRoute(
-                    "Chennai",
-                    "Vellore",
-                    140,
-                    vehicleType
+        double[] destinationCoordinates =
+                getCityCoordinates(destination);
+
+        if (sourceCoordinates == null ||
+                destinationCoordinates == null) {
+
+            System.out.println(
+                    "=========================================="
             );
-        }
 
-        if (source.equalsIgnoreCase("Chennai")
-                && destination.equalsIgnoreCase("Salem")) {
-
-            return createRoute(
-                    "Chennai",
-                    "Vellore",
-                    "Salem",
-                    340,
-                    vehicleType
+            System.out.println(
+                    "DESTINATION / SOURCE COORDINATES MISSING"
             );
-        }
 
-        if (source.equalsIgnoreCase("Chennai")
-                && destination.equalsIgnoreCase("Trichy")) {
-
-            return createRoute(
-                    "Chennai",
-                    "Vellore",
-                    "Salem",
-                    "Trichy",
-                    330,
-                    vehicleType
+            System.out.println(
+                    "Source: " + source
             );
-        }
 
-        if (source.equalsIgnoreCase("Chennai")
-                && destination.equalsIgnoreCase("Madurai")) {
-
-            return createRoute(
-                    "Chennai",
-                    "Vellore",
-                    "Salem",
-                    "Trichy",
-                    "Madurai",
-                    460,
-                    vehicleType
+            System.out.println(
+                    "Destination: " + destination
             );
-        }
 
-        if (source.equalsIgnoreCase("Chennai")
-                && destination.equalsIgnoreCase("Coimbatore")) {
-
-            return createRoute(
-                    "Chennai",
-                    "Vellore",
-                    "Salem",
-                    "Coimbatore",
-                    500,
-                    vehicleType
+            System.out.println(
+                    "=========================================="
             );
+
+            RouteResult result =
+                    new RouteResult(
+                            new ArrayList<>(),
+                            0
+                    );
+
+            result.setVehicleType(vehicleType);
+
+            return result;
         }
 
 
         // =====================================================
-        // VELLORE
-        // =====================================================
-
-        if (source.equalsIgnoreCase("Vellore")
-                && destination.equalsIgnoreCase("Chennai")) {
-
-            return createRoute(
-                    "Vellore",
-                    "Chennai",
-                    140,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Vellore")
-                && destination.equalsIgnoreCase("Salem")) {
-
-            return createRoute(
-                    "Vellore",
-                    "Salem",
-                    200,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Vellore")
-                && destination.equalsIgnoreCase("Trichy")) {
-
-            return createRoute(
-                    "Vellore",
-                    "Salem",
-                    "Trichy",
-                    340,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Vellore")
-                && destination.equalsIgnoreCase("Madurai")) {
-
-            return createRoute(
-                    "Vellore",
-                    "Salem",
-                    "Trichy",
-                    "Madurai",
-                    480,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Vellore")
-                && destination.equalsIgnoreCase("Coimbatore")) {
-
-            return createRoute(
-                    "Vellore",
-                    "Salem",
-                    "Coimbatore",
-                    390,
-                    vehicleType
-            );
-        }
-
-
-        // =====================================================
-        // SALEM
-        // =====================================================
-
-        if (source.equalsIgnoreCase("Salem")
-                && destination.equalsIgnoreCase("Chennai")) {
-
-            return createRoute(
-                    "Salem",
-                    "Vellore",
-                    "Chennai",
-                    340,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Salem")
-                && destination.equalsIgnoreCase("Vellore")) {
-
-            return createRoute(
-                    "Salem",
-                    "Vellore",
-                    200,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Salem")
-                && destination.equalsIgnoreCase("Trichy")) {
-
-            return createRoute(
-                    "Salem",
-                    "Trichy",
-                    170,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Salem")
-                && destination.equalsIgnoreCase("Madurai")) {
-
-            return createRoute(
-                    "Salem",
-                    "Trichy",
-                    "Madurai",
-                    330,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Salem")
-                && destination.equalsIgnoreCase("Coimbatore")) {
-
-            return createRoute(
-                    "Salem",
-                    "Coimbatore",
-                    160,
-                    vehicleType
-            );
-        }
-
-
-        // =====================================================
-        // TRICHY
-        // =====================================================
-
-        if (source.equalsIgnoreCase("Trichy")
-                && destination.equalsIgnoreCase("Chennai")) {
-
-            return createRoute(
-                    "Trichy",
-                    "Salem",
-                    "Vellore",
-                    "Chennai",
-                    330,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Trichy")
-                && destination.equalsIgnoreCase("Vellore")) {
-
-            return createRoute(
-                    "Trichy",
-                    "Salem",
-                    "Vellore",
-                    340,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Trichy")
-                && destination.equalsIgnoreCase("Salem")) {
-
-            return createRoute(
-                    "Trichy",
-                    "Salem",
-                    170,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Trichy")
-                && destination.equalsIgnoreCase("Madurai")) {
-
-            return createRoute(
-                    "Trichy",
-                    "Madurai",
-                    140,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Trichy")
-                && destination.equalsIgnoreCase("Coimbatore")) {
-
-            return createRoute(
-                    "Trichy",
-                    "Salem",
-                    "Coimbatore",
-                    330,
-                    vehicleType
-            );
-        }
-
-
-        // =====================================================
-        // MADURAI
-        // =====================================================
-
-        if (source.equalsIgnoreCase("Madurai")
-                && destination.equalsIgnoreCase("Chennai")) {
-
-            return createRoute(
-                    "Madurai",
-                    "Trichy",
-                    "Salem",
-                    "Vellore",
-                    "Chennai",
-                    460,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Madurai")
-                && destination.equalsIgnoreCase("Vellore")) {
-
-            return createRoute(
-                    "Madurai",
-                    "Trichy",
-                    "Salem",
-                    "Vellore",
-                    480,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Madurai")
-                && destination.equalsIgnoreCase("Salem")) {
-
-            return createRoute(
-                    "Madurai",
-                    "Trichy",
-                    "Salem",
-                    330,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Madurai")
-                && destination.equalsIgnoreCase("Trichy")) {
-
-            return createRoute(
-                    "Madurai",
-                    "Trichy",
-                    140,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Madurai")
-                && destination.equalsIgnoreCase("Coimbatore")) {
-
-            return createRoute(
-                    "Madurai",
-                    "Trichy",
-                    "Salem",
-                    "Coimbatore",
-                    380,
-                    vehicleType
-            );
-        }
-
-
-        // =====================================================
-        // COIMBATORE
-        // =====================================================
-
-        if (source.equalsIgnoreCase("Coimbatore")
-                && destination.equalsIgnoreCase("Chennai")) {
-
-            return createRoute(
-                    "Coimbatore",
-                    "Salem",
-                    "Vellore",
-                    "Chennai",
-                    500,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Coimbatore")
-                && destination.equalsIgnoreCase("Vellore")) {
-
-            return createRoute(
-                    "Coimbatore",
-                    "Salem",
-                    "Vellore",
-                    390,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Coimbatore")
-                && destination.equalsIgnoreCase("Salem")) {
-
-            return createRoute(
-                    "Coimbatore",
-                    "Salem",
-                    160,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Coimbatore")
-                && destination.equalsIgnoreCase("Trichy")) {
-
-            return createRoute(
-                    "Coimbatore",
-                    "Salem",
-                    "Trichy",
-                    330,
-                    vehicleType
-            );
-        }
-
-        if (source.equalsIgnoreCase("Coimbatore")
-                && destination.equalsIgnoreCase("Madurai")) {
-
-            return createRoute(
-                    "Coimbatore",
-                    "Salem",
-                    "Trichy",
-                    "Madurai",
-                    380,
-                    vehicleType
-            );
-        }
-
-
-        // =====================================================
-        // ALL 38 DISTRICTS
+        // ACTUAL SHORTEST ROAD ROUTE
         //
-        // OSRM will calculate the actual road route for
-        // combinations that are not explicitly listed above.
+        // OSRM returns alternative routes when available.
+        // We compare the returned route distances and select
+        // the route having the minimum distance.
         // =====================================================
-
-        City sourceCity =
-                createCity(source);
-
-        City destinationCity =
-                createCity(destination);
-
-        List<City> fallbackRoute =
-                new ArrayList<>(
-                        Arrays.asList(
-                                sourceCity,
-                                destinationCity
-                        )
-                );
 
         RouteResult result =
-                new RouteResult(
-                        fallbackRoute,
-                        0
+                findShortestRoadRoute(
+                        source,
+                        destination,
+                        vehicleType
                 );
+
+
+        // =====================================================
+        // FALLBACK
+        // =====================================================
+
+        if (result == null ||
+                result.getRoadCoordinates() == null ||
+                result.getRoadCoordinates().size() < 2) {
+
+            System.out.println(
+                    "OSRM shortest road route unavailable."
+            );
+
+            System.out.println(
+                    "Using district coordinate fallback."
+            );
+
+            List<City> fallbackRoute =
+                    new ArrayList<>();
+
+            fallbackRoute.add(
+                    createCity(source)
+            );
+
+            fallbackRoute.add(
+                    createCity(destination)
+            );
+
+            result =
+                    new RouteResult(
+                            fallbackRoute,
+                            0
+                    );
+
+            result.setVehicleType(
+                    vehicleType
+            );
+
+            result.setRoadCoordinates(
+                    getCityRoadCoordinates(
+                            fallbackRoute
+                    )
+            );
+
+            addExtraInformation(
+                    result,
+                    destination,
+                    vehicleType
+            );
+
+            return result;
+        }
+
+
+        // =====================================================
+        // EXTRA INFORMATION
+        // =====================================================
 
         addExtraInformation(
                 result,
@@ -545,6 +246,491 @@ public class RouteService {
         );
 
         return result;
+    }
+
+
+    // =========================================================
+    // FIND SHORTEST ROAD ROUTE USING OSRM
+    // =========================================================
+
+    private RouteResult findShortestRoadRoute(
+            String source,
+            String destination,
+            String vehicleType) {
+
+        RouteResult result = null;
+
+        try {
+
+            double[] sourceCoordinates =
+                    getCityCoordinates(source);
+
+            double[] destinationCoordinates =
+                    getCityCoordinates(destination);
+
+            if (sourceCoordinates == null ||
+                    destinationCoordinates == null) {
+
+                return null;
+            }
+
+
+            double sourceLatitude =
+                    sourceCoordinates[0];
+
+            double sourceLongitude =
+                    sourceCoordinates[1];
+
+            double destinationLatitude =
+                    destinationCoordinates[0];
+
+            double destinationLongitude =
+                    destinationCoordinates[1];
+
+
+            // =================================================
+            // OSRM FORMAT
+            //
+            // longitude,latitude
+            // =================================================
+
+            String coordinateString =
+                    sourceLongitude
+                            + ","
+                            + sourceLatitude
+                            + ";"
+                            + destinationLongitude
+                            + ","
+                            + destinationLatitude;
+
+
+            String url =
+                    OSRM_URL
+                            + coordinateString
+                            + "?overview=full"
+                            + "&geometries=geojson"
+                            + "&steps=false"
+                            + "&alternatives=true";
+
+
+            System.out.println(
+                    "=========================================="
+            );
+
+            System.out.println(
+                    "SMART ROUTE - OSRM ALTERNATIVE SEARCH"
+            );
+
+            System.out.println(
+                    "Source: "
+                            + source
+            );
+
+            System.out.println(
+                    "Destination: "
+                            + destination
+            );
+
+            System.out.println(
+                    "OSRM URL:"
+            );
+
+            System.out.println(
+                    url
+            );
+
+            System.out.println(
+                    "=========================================="
+            );
+
+
+            String response =
+                    restTemplate.getForObject(
+                            url,
+                            String.class
+                    );
+
+
+            if (response == null ||
+                    response.isBlank()) {
+
+                System.out.println(
+                        "OSRM returned empty response."
+                );
+
+                return null;
+            }
+
+
+            JsonNode root =
+                    objectMapper.readTree(
+                            response
+                    );
+
+
+            String code =
+                    root.path("code")
+                            .asText();
+
+
+            System.out.println(
+                    "OSRM response code: "
+                            + code
+            );
+
+
+            if (!"Ok".equalsIgnoreCase(code)) {
+
+                System.out.println(
+                        "OSRM routing failed."
+                );
+
+                return null;
+            }
+
+
+            JsonNode routes =
+                    root.path("routes");
+
+
+            if (!routes.isArray() ||
+                    routes.isEmpty()) {
+
+                System.out.println(
+                        "OSRM returned no routes."
+                );
+
+                return null;
+            }
+
+
+            // =================================================
+            // FIND MINIMUM DISTANCE ROUTE
+            // =================================================
+
+            JsonNode shortestRoute = null;
+
+            double shortestDistanceMeters =
+                    Double.MAX_VALUE;
+
+            int shortestRouteIndex =
+                    -1;
+
+
+            for (int i = 0;
+                 i < routes.size();
+                 i++) {
+
+                JsonNode route =
+                        routes.get(i);
+
+
+                if (!route.has("distance")) {
+
+                    continue;
+                }
+
+
+                double distanceMeters =
+                        route
+                                .path("distance")
+                                .asDouble();
+
+
+                double distanceKm =
+                        distanceMeters / 1000.0;
+
+
+                double durationSeconds =
+                        route
+                                .path("duration")
+                                .asDouble();
+
+
+                double durationMinutes =
+                        durationSeconds / 60.0;
+
+
+                System.out.println(
+                        "------------------------------------------"
+                );
+
+                System.out.println(
+                        "OSRM Route "
+                                + (i + 1)
+                );
+
+                System.out.println(
+                        "Distance: "
+                                + distanceKm
+                                + " km"
+                );
+
+                System.out.println(
+                        "Duration: "
+                                + durationMinutes
+                                + " minutes"
+                );
+
+
+                if (distanceMeters <
+                        shortestDistanceMeters) {
+
+                    shortestDistanceMeters =
+                            distanceMeters;
+
+                    shortestRoute =
+                            route;
+
+                    shortestRouteIndex =
+                            i;
+                }
+            }
+
+
+            if (shortestRoute == null) {
+
+                System.out.println(
+                        "No valid OSRM route found."
+                );
+
+                return null;
+            }
+
+
+            // =================================================
+            // ACTUAL MINIMUM ROAD DISTANCE
+            // =================================================
+
+            double shortestDistanceKm =
+                    shortestDistanceMeters /
+                            1000.0;
+
+
+            shortestDistanceKm =
+                    Math.round(
+                            shortestDistanceKm * 100.0
+                    ) / 100.0;
+
+
+            System.out.println(
+                    "=========================================="
+            );
+
+            System.out.println(
+                    "SELECTED SHORTEST ROAD ROUTE"
+            );
+
+            System.out.println(
+                    "Route number: "
+                            + (shortestRouteIndex + 1)
+            );
+
+            System.out.println(
+                    "Minimum road distance: "
+                            + shortestDistanceKm
+                            + " km"
+            );
+
+            System.out.println(
+                    "=========================================="
+            );
+
+
+            // =================================================
+            // CREATE DISTRICT ROUTE
+            // =================================================
+
+            List<City> routeCities =
+                    new ArrayList<>();
+
+            routeCities.add(
+                    createCity(source)
+            );
+
+            routeCities.add(
+                    createCity(destination)
+            );
+
+
+            result =
+                    new RouteResult(
+                            routeCities,
+                            shortestDistanceKm
+                    );
+
+
+            result.setVehicleType(
+                    vehicleType
+            );
+
+
+            // =================================================
+            // GET SELECTED ROUTE GEOMETRY
+            // =================================================
+
+            List<List<Double>> roadCoordinates =
+                    extractRoadCoordinates(
+                            shortestRoute
+                    );
+
+
+            result.setRoadCoordinates(
+                    roadCoordinates
+            );
+
+
+            System.out.println(
+                    "Selected road coordinate count: "
+                            + roadCoordinates.size()
+            );
+
+
+            // =================================================
+            // OSRM DURATION
+            // =================================================
+
+            if (shortestRoute.has("duration")) {
+
+                double durationSeconds =
+                        shortestRoute
+                                .path("duration")
+                                .asDouble();
+
+
+                double durationHours =
+                        durationSeconds /
+                                3600.0;
+
+
+                durationHours =
+                        Math.round(
+                                durationHours * 100.0
+                        ) / 100.0;
+
+
+                result.setEstimatedTimeHours(
+                        durationHours
+                );
+
+
+                System.out.println(
+                        "OSRM route duration: "
+                                + durationHours
+                                + " hours"
+                );
+            }
+
+
+            System.out.println(
+                    "=========================================="
+            );
+
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "=========================================="
+            );
+
+            System.out.println(
+                    "OSRM SHORTEST ROUTE ERROR"
+            );
+
+            System.out.println(
+                    e.getMessage()
+            );
+
+            System.out.println(
+                    "=========================================="
+            );
+
+            return null;
+        }
+
+
+        return result;
+    }
+
+
+    // =========================================================
+    // EXTRACT OSRM ROAD COORDINATES
+    // =========================================================
+
+    private List<List<Double>> extractRoadCoordinates(
+            JsonNode selectedRoute) {
+
+        List<List<Double>> coordinates =
+                new ArrayList<>();
+
+        if (selectedRoute == null) {
+
+            return coordinates;
+        }
+
+
+        JsonNode geometry =
+                selectedRoute.path(
+                        "geometry"
+                );
+
+
+        JsonNode geometryCoordinates =
+                geometry.path(
+                        "coordinates"
+                );
+
+
+        if (!geometryCoordinates.isArray()) {
+
+            System.out.println(
+                    "OSRM geometry is missing."
+            );
+
+            return coordinates;
+        }
+
+
+        // =====================================================
+        // GEOJSON FORMAT
+        //
+        // OSRM:
+        // [longitude, latitude]
+        //
+        // Leaflet:
+        // [latitude, longitude]
+        // =====================================================
+
+        for (JsonNode point :
+                geometryCoordinates) {
+
+            if (!point.isArray() ||
+                    point.size() < 2) {
+
+                continue;
+            }
+
+
+            double longitude =
+                    point.get(0)
+                            .asDouble();
+
+
+            double latitude =
+                    point.get(1)
+                            .asDouble();
+
+
+            coordinates.add(
+                    Arrays.asList(
+                            latitude,
+                            longitude
+                    )
+            );
+        }
+
+
+        return coordinates;
     }
 
 
@@ -561,8 +747,14 @@ public class RouteService {
         List<City> route =
                 new ArrayList<>();
 
-        route.add(createCity(city1));
-        route.add(createCity(city2));
+        route.add(
+                createCity(city1)
+        );
+
+        route.add(
+                createCity(city2)
+        );
+
 
         RouteResult result =
                 new RouteResult(
@@ -570,11 +762,18 @@ public class RouteService {
                         distance
                 );
 
+
+        result.setVehicleType(
+                vehicleType
+        );
+
+
         addExtraInformation(
                 result,
                 city2,
                 vehicleType
         );
+
 
         return result;
     }
@@ -594,9 +793,18 @@ public class RouteService {
         List<City> route =
                 new ArrayList<>();
 
-        route.add(createCity(city1));
-        route.add(createCity(city2));
-        route.add(createCity(city3));
+        route.add(
+                createCity(city1)
+        );
+
+        route.add(
+                createCity(city2)
+        );
+
+        route.add(
+                createCity(city3)
+        );
+
 
         RouteResult result =
                 new RouteResult(
@@ -604,11 +812,18 @@ public class RouteService {
                         distance
                 );
 
+
+        result.setVehicleType(
+                vehicleType
+        );
+
+
         addExtraInformation(
                 result,
                 city3,
                 vehicleType
         );
+
 
         return result;
     }
@@ -629,10 +844,22 @@ public class RouteService {
         List<City> route =
                 new ArrayList<>();
 
-        route.add(createCity(city1));
-        route.add(createCity(city2));
-        route.add(createCity(city3));
-        route.add(createCity(city4));
+        route.add(
+                createCity(city1)
+        );
+
+        route.add(
+                createCity(city2)
+        );
+
+        route.add(
+                createCity(city3)
+        );
+
+        route.add(
+                createCity(city4)
+        );
+
 
         RouteResult result =
                 new RouteResult(
@@ -640,11 +867,18 @@ public class RouteService {
                         distance
                 );
 
+
+        result.setVehicleType(
+                vehicleType
+        );
+
+
         addExtraInformation(
                 result,
                 city4,
                 vehicleType
         );
+
 
         return result;
     }
@@ -666,11 +900,26 @@ public class RouteService {
         List<City> route =
                 new ArrayList<>();
 
-        route.add(createCity(city1));
-        route.add(createCity(city2));
-        route.add(createCity(city3));
-        route.add(createCity(city4));
-        route.add(createCity(city5));
+        route.add(
+                createCity(city1)
+        );
+
+        route.add(
+                createCity(city2)
+        );
+
+        route.add(
+                createCity(city3)
+        );
+
+        route.add(
+                createCity(city4)
+        );
+
+        route.add(
+                createCity(city5)
+        );
+
 
         RouteResult result =
                 new RouteResult(
@@ -678,11 +927,18 @@ public class RouteService {
                         distance
                 );
 
+
+        result.setVehicleType(
+                vehicleType
+        );
+
+
         addExtraInformation(
                 result,
                 city5,
                 vehicleType
         );
+
 
         return result;
     }
@@ -697,38 +953,31 @@ public class RouteService {
             String destination,
             String vehicleType) {
 
-        result.setVehicleType(vehicleType);
+        result.setVehicleType(
+                vehicleType
+        );
 
 
         // =====================================================
-        // ACTUAL ROAD ROUTE
+        // ROAD COORDINATES FALLBACK
         // =====================================================
 
         List<List<Double>> roadCoordinates =
-                getActualRoadCoordinates(
-                        result.getRoute()
-                );
+                result.getRoadCoordinates();
+
 
         if (roadCoordinates == null ||
                 roadCoordinates.size() < 2) {
-
-            System.out.println(
-                    "OSRM route unavailable."
-            );
-
-            System.out.println(
-                    "Using city coordinate fallback."
-            );
 
             roadCoordinates =
                     getCityRoadCoordinates(
                             result.getRoute()
                     );
-        }
 
-        result.setRoadCoordinates(
-                roadCoordinates
-        );
+            result.setRoadCoordinates(
+                    roadCoordinates
+            );
+        }
 
 
         System.out.println(
@@ -742,6 +991,12 @@ public class RouteService {
         System.out.println(
                 "Road coordinate count: "
                         + roadCoordinates.size()
+        );
+
+        System.out.println(
+                "Selected minimum distance: "
+                        + result.getTotalDistance()
+                        + " km"
         );
 
         System.out.println(
@@ -760,6 +1015,7 @@ public class RouteService {
                             result.getTotalDistance(),
                             vehicleType
                     );
+
 
             if (fuelPrediction != null) {
 
@@ -780,6 +1036,7 @@ public class RouteService {
                 );
             }
 
+
         } catch (Exception e) {
 
             System.out.println(
@@ -797,11 +1054,13 @@ public class RouteService {
 
             String sourceCity = null;
 
+
             if (result.getRoute() != null &&
                     !result.getRoute().isEmpty()) {
 
                 City firstCity =
                         result.getRoute().get(0);
+
 
                 if (firstCity != null) {
 
@@ -809,6 +1068,7 @@ public class RouteService {
                             firstCity.getName();
                 }
             }
+
 
             if (sourceCity != null &&
                     destination != null) {
@@ -819,6 +1079,7 @@ public class RouteService {
                                 destination,
                                 vehicleType
                         );
+
 
                 if (tollPrediction != null) {
 
@@ -833,6 +1094,7 @@ public class RouteService {
                     result.setTollCost(
                             tollPrediction.getTotalTollCost()
                     );
+
 
                     System.out.println(
                             "=========================================="
@@ -873,6 +1135,7 @@ public class RouteService {
                 }
             }
 
+
         } catch (Exception e) {
 
             System.out.println(
@@ -893,6 +1156,7 @@ public class RouteService {
                             destination
                     );
 
+
             if (coordinates != null) {
 
                 WeatherData weather =
@@ -901,6 +1165,7 @@ public class RouteService {
                                 coordinates[1]
                         );
 
+
                 if (weather != null) {
 
                     result.setWeather(
@@ -908,6 +1173,7 @@ public class RouteService {
                     );
                 }
             }
+
 
         } catch (Exception e) {
 
@@ -929,10 +1195,12 @@ public class RouteService {
                             "dd-MM-yyyy HH:mm:ss"
                     );
 
+
             result.setCurrentTime(
                     LocalDateTime.now()
                             .format(formatter)
             );
+
 
         } catch (Exception e) {
 
@@ -949,10 +1217,12 @@ public class RouteService {
 
         TrafficPrediction traffic = null;
 
+
         try {
 
             traffic =
                     trafficService.predictTraffic();
+
 
             if (traffic != null) {
 
@@ -960,21 +1230,25 @@ public class RouteService {
                         traffic
                 );
 
+
                 System.out.println(
                         "Traffic Prediction: "
                                 + traffic.getTrafficLevel()
                 );
+
 
                 System.out.println(
                         "Traffic Percentage: "
                                 + traffic.getTrafficPercentage()
                 );
 
+
                 System.out.println(
                         "Speed Multiplier: "
                                 + traffic.getSpeedMultiplier()
                 );
             }
+
 
         } catch (Exception e) {
 
@@ -990,6 +1264,7 @@ public class RouteService {
         // =====================================================
 
         double averageSpeed;
+
 
         if ("Bike".equalsIgnoreCase(vehicleType)) {
 
@@ -1015,10 +1290,12 @@ public class RouteService {
 
         double speedMultiplier = 1.0;
 
+
         if (traffic != null) {
 
             speedMultiplier =
                     traffic.getSpeedMultiplier();
+
 
             if (speedMultiplier <= 0) {
 
@@ -1031,15 +1308,18 @@ public class RouteService {
                 averageSpeed *
                         speedMultiplier;
 
+
         System.out.println(
                 "Normal Speed: "
                         + averageSpeed
         );
 
+
         System.out.println(
                 "Traffic Multiplier: "
                         + speedMultiplier
         );
+
 
         System.out.println(
                 "Traffic Adjusted Speed: "
@@ -1049,310 +1329,38 @@ public class RouteService {
 
         // =====================================================
         // TRAVEL TIME
+        //
+        // If OSRM duration was already stored, it is retained.
+        // Otherwise calculate based on traffic-adjusted speed.
         // =====================================================
 
-        if (trafficAdjustedSpeed > 0 &&
-                result.getTotalDistance() > 0) {
+        if (result.getEstimatedTimeHours() <= 0) {
 
-            double estimatedTime =
-                    result.getTotalDistance()
-                            / trafficAdjustedSpeed;
+            if (trafficAdjustedSpeed > 0 &&
+                    result.getTotalDistance() > 0) {
 
-            estimatedTime =
-                    Math.round(
-                            estimatedTime * 100.0
-                    ) / 100.0;
+                double estimatedTime =
+                        result.getTotalDistance()
+                                / trafficAdjustedSpeed;
 
-            result.setEstimatedTimeHours(
-                    estimatedTime
-            );
 
-        } else {
+                estimatedTime =
+                        Math.round(
+                                estimatedTime * 100.0
+                        ) / 100.0;
 
-            result.setEstimatedTimeHours(
-                    0
-            );
+
+                result.setEstimatedTimeHours(
+                        estimatedTime
+                );
+
+            } else {
+
+                result.setEstimatedTimeHours(
+                        0
+                );
+            }
         }
-    }
-
-
-    // =========================================================
-    // GET ACTUAL ROAD COORDINATES FROM OSRM
-    // =========================================================
-
-    private List<List<Double>> getActualRoadCoordinates(
-            List<City> route) {
-
-        List<List<Double>> coordinates =
-                new ArrayList<>();
-
-        if (route == null ||
-                route.size() < 2) {
-
-            return coordinates;
-        }
-
-        try {
-
-            StringBuilder coordinateString =
-                    new StringBuilder();
-
-            for (City city : route) {
-
-                if (city == null ||
-                        city.getName() == null) {
-
-                    continue;
-                }
-
-                double[] cityCoordinates =
-                        getCityCoordinates(
-                                city.getName()
-                        );
-
-                if (cityCoordinates == null) {
-
-                    System.out.println(
-                            "Coordinates not found for: "
-                                    + city.getName()
-                    );
-
-                    continue;
-                }
-
-                double latitude =
-                        cityCoordinates[0];
-
-                double longitude =
-                        cityCoordinates[1];
-
-
-                // OSRM requires longitude,latitude
-
-                if (coordinateString.length() > 0) {
-
-                    coordinateString.append(";");
-                }
-
-                coordinateString.append(
-                        longitude
-                );
-
-                coordinateString.append(",");
-
-                coordinateString.append(
-                        latitude
-                );
-            }
-
-
-            if (coordinateString.length() == 0) {
-
-                return coordinates;
-            }
-
-
-            String url =
-                    OSRM_URL
-                            + coordinateString
-                            + "?overview=full"
-                            + "&geometries=geojson"
-                            + "&steps=false";
-
-
-            System.out.println(
-                    "=========================================="
-            );
-
-            System.out.println(
-                    "REQUESTING ACTUAL ROAD ROUTE"
-            );
-
-            System.out.println(
-                    "OSRM URL:"
-            );
-
-            System.out.println(
-                    url
-            );
-
-
-            String response =
-                    restTemplate.getForObject(
-                            url,
-                            String.class
-                    );
-
-
-            if (response == null ||
-                    response.isBlank()) {
-
-                System.out.println(
-                        "OSRM returned empty response."
-                );
-
-                return coordinates;
-            }
-
-
-            JsonNode root =
-                    objectMapper.readTree(
-                            response
-                    );
-
-
-            String code =
-                    root.path("code")
-                            .asText();
-
-
-            System.out.println(
-                    "OSRM response code: "
-                            + code
-            );
-
-
-            if (!"Ok".equalsIgnoreCase(code)) {
-
-                System.out.println(
-                        "OSRM route failed."
-                );
-
-                return coordinates;
-            }
-
-
-            JsonNode routes =
-                    root.path("routes");
-
-
-            if (!routes.isArray() ||
-                    routes.isEmpty()) {
-
-                System.out.println(
-                        "OSRM returned no routes."
-                );
-
-                return coordinates;
-            }
-
-
-            JsonNode firstRoute =
-                    routes.get(0);
-
-
-            // =================================================
-            // GET ACTUAL DISTANCE
-            // =================================================
-
-            if (firstRoute.has("distance")) {
-
-                double distanceMeters =
-                        firstRoute
-                                .path("distance")
-                                .asDouble();
-
-                double distanceKm =
-                        distanceMeters / 1000.0;
-
-                System.out.println(
-                        "OSRM actual distance: "
-                                + distanceKm
-                                + " km"
-                );
-
-                /*
-                 * For routes which use OSRM fallback,
-                 * totalDistance may originally be zero.
-                 *
-                 * RouteResult does not expose a generic
-                 * setter in this version, so the distance
-                 * is displayed in the console.
-                 */
-            }
-
-
-            JsonNode geometry =
-                    firstRoute.path(
-                            "geometry"
-                    );
-
-
-            JsonNode geometryCoordinates =
-                    geometry.path(
-                            "coordinates"
-                    );
-
-
-            if (!geometryCoordinates.isArray()) {
-
-                System.out.println(
-                        "OSRM geometry is missing."
-                );
-
-                return coordinates;
-            }
-
-
-            // =================================================
-            // GEOJSON -> LEAFLET
-            // =================================================
-
-            for (JsonNode point :
-                    geometryCoordinates) {
-
-                if (!point.isArray() ||
-                        point.size() < 2) {
-
-                    continue;
-                }
-
-                double longitude =
-                        point.get(0)
-                                .asDouble();
-
-                double latitude =
-                        point.get(1)
-                                .asDouble();
-
-                coordinates.add(
-                        Arrays.asList(
-                                latitude,
-                                longitude
-                        )
-                );
-            }
-
-
-            System.out.println(
-                    "Actual road points received: "
-                            + coordinates.size()
-            );
-
-            System.out.println(
-                    "=========================================="
-            );
-
-        } catch (Exception e) {
-
-            System.out.println(
-                    "=========================================="
-            );
-
-            System.out.println(
-                    "OSRM ROUTING ERROR"
-            );
-
-            System.out.println(
-                    e.getMessage()
-            );
-
-            System.out.println(
-                    "=========================================="
-            );
-        }
-
-        return coordinates;
     }
 
 
@@ -1366,12 +1374,15 @@ public class RouteService {
         List<List<Double>> coordinates =
                 new ArrayList<>();
 
+
         if (route == null) {
 
             return coordinates;
         }
 
-        for (City city : route) {
+
+        for (City city :
+                route) {
 
             if (city == null ||
                     city.getName() == null) {
@@ -1379,10 +1390,12 @@ public class RouteService {
                 continue;
             }
 
+
             double[] cityCoordinates =
                     getCityCoordinates(
                             city.getName()
                     );
+
 
             if (cityCoordinates != null) {
 
@@ -1395,12 +1408,13 @@ public class RouteService {
             }
         }
 
+
         return coordinates;
     }
 
 
     // =========================================================
-    // ALL 38 TAMIL NADU DISTRICT COORDINATES
+    // ALL TAMIL NADU DISTRICT COORDINATES
     // =========================================================
 
     private double[] getCityCoordinates(
@@ -1410,6 +1424,7 @@ public class RouteService {
 
             return null;
         }
+
 
         switch (
                 city.trim()
@@ -1744,7 +1759,7 @@ public class RouteService {
 
 
     // =========================================================
-    // CREATE CITY FOR ALL 38 DISTRICTS
+    // CREATE CITY FOR ALL DISTRICTS
     // =========================================================
 
     private City createCity(

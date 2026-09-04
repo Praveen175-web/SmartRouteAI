@@ -26,7 +26,7 @@ public class FuelService {
         // Validate distance
         // -----------------------------------------------------
 
-        if (distanceKm < 0) {
+        if (!Double.isFinite(distanceKm) || distanceKm < 0) {
 
             distanceKm = 0;
         }
@@ -89,7 +89,7 @@ public class FuelService {
 
 
         // =====================================================
-        // DEFAULT
+        // DEFAULT VEHICLE
         // =====================================================
 
         else {
@@ -108,8 +108,13 @@ public class FuelService {
         // FUEL REQUIRED
         // =====================================================
 
-        double fuelRequired =
-                distanceKm / mileage;
+        double fuelRequired = 0.0;
+
+        if (mileage > 0) {
+
+            fuelRequired =
+                    distanceKm / mileage;
+        }
 
 
         // =====================================================
@@ -138,14 +143,22 @@ public class FuelService {
 
         // =====================================================
         // CREATE FUEL PREDICTION
+        //
+        // FuelPrediction constructor order:
+        //
+        // 1. fuelRequired
+        // 2. fuelCost
+        // 3. fuelPrice
+        // 4. mileage
+        // 5. vehicleType
         // =====================================================
 
         return new FuelPrediction(
-                mileage,
-                fuelPrice,
                 fuelRequired,
                 totalFuelCost,
-                fuelType
+                fuelPrice,
+                mileage,
+                vehicleType
         );
     }
 }
