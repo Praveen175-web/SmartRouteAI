@@ -3,18 +3,16 @@ name: SmartRouteAI CI and Dependency Security
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build-and-security:
-    name: Build and Dependency Graph
+    name: Build and Vulnerability Scan
     runs-on: ubuntu-latest
 
     steps:
@@ -29,8 +27,26 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
-        with:
-          dependency-graph: generate-and-submit
 
       - name: Build and run tests
         run: ./gradlew build
+
+      - name: Run OWASP Dependency-Check
+        uses: dependency-check/Dependency-Check_Action@main
+        id: dependency-check
+        with:
+          project: SmartRouteAI
+          path: .
+          format: HTML
+          out: reports
+          args: >
+            --failOnCVSS 7
+            --enableRetired
+
+      - name: Upload dependency scan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-check-report
+          path: reports
+          if-no-files-found: warn
